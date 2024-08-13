@@ -14,6 +14,26 @@ public class SumAndAverage {
     }
 }
 
+public class SumAndAverage {
+    public static void main(String[] args) {
+        int[] numbers1 = {1, 2, 3, 4, 5};
+        int[] numbers2 = {6, 7, 8, 9, 10};
+
+        // Ensure both arrays are of the same length
+        if (numbers1.length != numbers2.length) {
+            System.out.println("Arrays are of different lengths.");
+            return;
+        }
+
+        // Iterate through arrays and print the sum of each pair
+        for (int i = 0; i < numbers1.length; i++) {
+            int sum = numbers1[i] + numbers2[i];
+            System.out.println(numbers1[i] + " + " + numbers2[i] + " = " + sum);
+        }
+    }
+}
+
+
 public class MinMaxInArray {
     public static void main(String[] args) {
         int[] numbers = {3, 5, 7, 2, 8, -1, 4, 10, 12};
@@ -33,6 +53,158 @@ public class MinMaxInArray {
         System.out.println("Maximum value: " + max);
     }
 }
+
+public class LinearSearchExample {
+    public static void main(String[] args) {
+        int[] array = {10, 20, 30, 40, 50};
+        int target = 30;
+        
+        // Call linearSearch method and store the result
+        int index = linearSearch(array, target);
+        
+        if (index == -1) {
+            System.out.println("Element " + target + " not found in the array.");
+        } else {
+            System.out.println("Element " + target + " found at index " + index + ".");
+        }
+    }
+    
+    // Method to perform linear search
+    public static int linearSearch(int[] array, int target) {
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == target) {
+                return i; // Return the index where the target is found
+            }
+        }
+        return -1; // Return -1 if the target is not found
+    }
+}
+import java.util.HashMap;
+import java.util.Map;
+
+public class FrequencyCounterString {
+    public static void main(String[] args) {
+        String str = "programming"; // Input string
+        
+        // Create a HashMap to store frequency of each character
+        HashMap<Character, Integer> frequencyMap = new HashMap<>();
+        
+        // Convert the string to a char array and populate the HashMap
+        for (char ch : str.toCharArray()) {
+            if (frequencyMap.containsKey(ch)) {
+                // Increment the frequency count if the character is already in the map
+                frequencyMap.put(ch, frequencyMap.get(ch) + 1);
+            } else {
+                // Add the character to the map with a count of 1
+                frequencyMap.put(ch, 1);
+            }
+        }
+        
+        // Print the frequency of each character
+        for (Map.Entry<Character, Integer> entry : frequencyMap.entrySet()) {
+            System.out.println("Character '" + entry.getKey() + "' occurs " + entry.getValue() + " times.");
+        }
+    }
+}
+public class ArrayConcatenation {
+    public static void main(String[] args) {
+        int[] array1 = {1, 2, 3, 4, 5};
+        int[] array2 = {6, 7, 8, 9, 10};
+        
+        // Call the method to concatenate arrays
+        int[] concatenatedArray = concatenateArrays(array1, array2);
+        
+        // Print the concatenated array
+        for (int num : concatenatedArray) {
+            System.out.print(num + " ");
+        }
+    }
+    
+    // Method to concatenate two arrays
+    public static int[] concatenateArrays(int[] array1, int[] array2) {
+        // Create a new array with length equal to the sum of both arrays' lengths
+        int[] result = new int[array1.length + array2.length];
+        
+        // Copy elements from the first array
+        System.arraycopy(array1, 0, result, 0, array1.length);
+        // Copy elements from the second array
+        System.arraycopy(array2, 0, result, array1.length, array2.length);
+        
+        return result;
+    }
+}
+
+public class SecondLargestSmallest {
+    public static void main(String[] args) {
+        int[] array = {10, 20, 4, 45, 99, 99, 99, 45};
+
+        int[] result = findSecondLargestAndSmallest(array);
+        
+        System.out.println("Second Smallest: " + result[0]);
+        System.out.println("Second Largest: " + result[1]);
+    }
+
+    // Method to find the second smallest and second largest numbers
+    public static int[] findSecondLargestAndSmallest(int[] array) {
+        if (array.length < 2) {
+            return new int[]{-1, -1}; // Not enough elements
+        }
+
+        int smallest = Integer.MAX_VALUE;
+        int secondSmallest = Integer.MAX_VALUE;
+        int largest = Integer.MIN_VALUE;
+        int secondLargest = Integer.MIN_VALUE;
+
+        for (int num : array) {
+            // Update smallest and second smallest
+            if (num < smallest) {
+                secondSmallest = smallest;
+                smallest = num;
+            } else if (num > smallest && num < secondSmallest) {
+                secondSmallest = num;
+            }
+
+            // Update largest and second largest
+            if (num > largest) {
+                secondLargest = largest;
+                largest = num;
+            } else if (num < largest && num > secondLargest) {
+                secondLargest = num;
+            }
+        }
+
+        // Check if second smallest or second largest does not exist
+        if (secondSmallest == Integer.MAX_VALUE) {
+            secondSmallest = -1;
+        }
+        if (secondLargest == Integer.MIN_VALUE) {
+            secondLargest = -1;
+        }
+
+        return new int[]{secondSmallest, secondLargest};
+    }
+}
+
+
+/Write a program to delete element from array at specified position.
+int[] a = {10,20,30,40,50};
+    //  0 1   2  3 4
+
+int key = 30;
+int index = 0;
+for(int i=0;i<a.length; i++)
+{
+  if(a[i] == key) {
+    {
+      index = i;
+      break;
+    }
+  }
+}
+for(int i=index;i<a.length;i++)
+  {
+  a[i] = a[i+1];
+  }
 
 import java.util.Arrays;
 
@@ -64,6 +236,41 @@ public class FindDuplicates {
         }
     }
 }
+import java.util.Arrays;
+
+public class AnagramExample {
+    public static void main(String[] args) {
+        String str1 = "listen";
+        String str2 = "silent";
+        
+        // Check if the two strings are anagrams
+        if (areAnagrams(str1, str2)) {
+            System.out.println(str1 + " and " + str2 + " are anagrams.");
+        } else {
+            System.out.println(str1 + " and " + str2 + " are not anagrams.");
+        }
+    }
+    
+    // Method to check if two strings are anagrams
+    public static boolean areAnagrams(String str1, String str2) {
+        // If lengths are different, they cannot be anagrams
+        if (str1.length() != str2.length()) {
+            return false;
+        }
+        
+        // Convert strings to char arrays
+        char[] arr1 = str1.toCharArray();
+        char[] arr2 = str2.toCharArray();
+        
+        // Sort the arrays
+        Arrays.sort(arr1);
+        Arrays.sort(arr2);
+        
+        // Check if sorted arrays are equal
+        return Arrays.equals(arr1, arr2);
+    }
+}
+
 
 import java.util.Arrays;
 
@@ -151,6 +358,41 @@ public class MissingNumber {
         System.out.println("Missing number: " + missingNumber);
     }
 }
+
+public class CharacterPresenceCheck { //subarray
+    public static void main(String[] args) {
+        String s1 = "India";
+        String s2 = "In";
+
+        // Convert strings to character arrays
+        char[] c1 = s1.toCharArray();
+        char[] c2 = s2.toCharArray();
+        
+        int count = 0;
+
+        // Check if each character in s2 is present in s1
+        for (char letter : c2) {
+            boolean found = false;
+            for (char c : c1) {
+                if (c == letter) {
+                    found = true;
+                    break;
+                }
+            }
+            if (found) {
+                count++;
+            }
+        }
+
+        // Check if all characters in s2 are present in s1
+        if (c2.length == count) {
+            System.out.println("All letters are present");
+        } else {
+            System.out.println("Not all letters are present");
+        }
+    }
+}
+
 
 import java.util.HashMap;
 import java.util.Map;
